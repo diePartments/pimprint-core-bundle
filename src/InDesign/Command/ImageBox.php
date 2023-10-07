@@ -258,7 +258,7 @@ class ImageBox extends FileBox implements ImageCollectorInterface
             $this->setParam('mtime', $storage->lastModified($asset->getRealFullPath()));
             $this->setParam('srcFileSize', $asset->getFileSize());
             $this->setParam('srcUrl', $storage->publicUrl($asset->getRealFullPath()));
-            $this->setParam('thumbnailUrl', $hostUrl . $thumbUrl);
+            $this->setParam('thumbnailUrl', $thumbUrl);
         } else {
             $this->addForcedThumbnailParams($thumbnail);
         }
