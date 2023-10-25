@@ -303,9 +303,12 @@ class ImageBox extends FileBox implements ImageCollectorInterface
 
         $hostUrl = $this->getProject()
                         ->getHostUrl();
-        $this->setParam('src', str_replace('%20', ' ', $srcUrl));
+        $parsedSrcUrl = parse_url($srcUrl);
+        $srcUrlParam = isset($parsedSrcUrl['host']) && $parsedSrcUrl['host'] ? $srcUrl : $hostUrl . $srcUrl;
+
+        $this->setParam('src', urldecode($parsedSrcUrl['path']));
         $this->setParam('srcFileSize', $fileSize);
-        $this->setParam('srcUrl', $hostUrl . $srcUrl);
+        $this->setParam('srcUrl', $srcUrlParam);
         $this->setParam('thumbnailUrl', '');
     }
 
